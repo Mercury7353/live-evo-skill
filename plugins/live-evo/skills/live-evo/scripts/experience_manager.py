@@ -10,10 +10,15 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-# Experience storage directory
-EXPERIENCE_DIR = Path.home() / ".claude" / "skills" / "live-evo" / "experiences"
+# Experience storage directory — always in ~/.live-evo/ for persistence
+# This works regardless of whether live-evo is installed as a personal skill or plugin
+EXPERIENCE_DIR = Path.home() / ".live-evo"
 DB_PATH = EXPERIENCE_DIR / "experience_db.jsonl"
 WEIGHT_HISTORY_PATH = EXPERIENCE_DIR / "weight_history.jsonl"
+
+# Seed data bundled with the skill (for first-run initialization)
+_SCRIPT_DIR = Path(__file__).parent
+_BUNDLED_SEED = _SCRIPT_DIR.parent / "experiences" / "experience_db.jsonl"
 
 # Weight parameters
 INITIAL_WEIGHT = 1.0
@@ -24,8 +29,12 @@ WEIGHT_DECREASE_RATE = 0.2
 
 
 def ensure_dirs():
-    """Ensure experience directories exist."""
+    """Ensure experience directories exist. Copy seed data on first run."""
     EXPERIENCE_DIR.mkdir(parents=True, exist_ok=True)
+    # On first run, copy bundled seed experiences if DB doesn't exist yet
+    if not DB_PATH.exists() and _BUNDLED_SEED.exists():
+        import shutil
+        shutil.copy2(_BUNDLED_SEED, DB_PATH)
 
 
 def generate_id(text: str) -> str:

@@ -10,6 +10,10 @@ allowed-tools: Bash(python *), Read, Write, Edit
 
 You are using the Live-Evo memory system that learns from past mistakes through experience accumulation and adaptive evaluation.
 
+**IMPORTANT — Script location**: All scripts are in the `scripts/` subdirectory next to this SKILL.md file. When running scripts, use the absolute path to the `scripts/` directory relative to where this file is located. For example, if this SKILL.md is at `/path/to/live-evo/SKILL.md`, the scripts are at `/path/to/live-evo/scripts/`.
+
+Experience data is stored persistently at `~/.live-evo/experience_db.jsonl` (independent of skill installation location).
+
 ## Core Workflow
 
 ### 1. Retrieve & Compile (Before Acting)
@@ -17,7 +21,7 @@ You are using the Live-Evo memory system that learns from past mistakes through 
 Run the experience retrieval script to find relevant past experiences:
 
 ```bash
-python ~/.claude/skills/live-evo/scripts/retrieve.py --query "YOUR_TASK_DESCRIPTION"
+python <scripts-dir>/retrieve.py --query "YOUR_TASK_DESCRIPTION"
 ```
 
 If experiences are found, they will be compiled into a task-specific guideline. **Use this guideline to inform your approach.**
@@ -52,7 +56,7 @@ Make **two independent attempts**:
 Then verify and update weights:
 
 ```bash
-python ~/.claude/skills/live-evo/scripts/update.py \
+python <scripts-dir>/update.py \
   --task "TASK_DESCRIPTION" \
   --result-a "RESULT_WITHOUT_MEMORY" \
   --result-b "RESULT_WITH_GUIDELINE" \
@@ -72,7 +76,7 @@ When contrastive evaluation is not feasible:
 3. **Store experience directly** if feedback reveals a lesson:
 
 ```bash
-python ~/.claude/skills/live-evo/scripts/add_experience.py \
+python <scripts-dir>/add_experience.py \
   --question "THE_TASK_QUESTION" \
   --failure-reason "What went wrong (from feedback)" \
   --improvement "Key lesson learned" \
@@ -86,7 +90,7 @@ No contrastive comparison needed — just learn from what happened.
 Whenever a task fails or feedback reveals a learnable lesson — regardless of which path you took — store the experience:
 
 ```bash
-python ~/.claude/skills/live-evo/scripts/add_experience.py \
+python <scripts-dir>/add_experience.py \
   --question "THE_TASK_QUESTION" \
   --failure-reason "What went wrong" \
   --improvement "Key lesson learned" \
@@ -98,7 +102,7 @@ python ~/.claude/skills/live-evo/scripts/add_experience.py \
 If you used a retrieved guideline and can determine whether it helped:
 
 ```bash
-python ~/.claude/skills/live-evo/scripts/update.py \
+python <scripts-dir>/update.py \
   --task "TASK_DESCRIPTION" \
   --result-a "WHAT_WOULD_HAVE_HAPPENED" \
   --result-b "WHAT_ACTUALLY_HAPPENED" \
@@ -140,15 +144,15 @@ Each experience contains:
 
 **View all experiences:**
 ```bash
-python ~/.claude/skills/live-evo/scripts/list_experiences.py
+python <scripts-dir>/list_experiences.py
 ```
 
 **Search experiences:**
 ```bash
-python ~/.claude/skills/live-evo/scripts/retrieve.py --query "your search query" --top-k 5
+python <scripts-dir>/retrieve.py --query "your search query" --top-k 5
 ```
 
 **Get statistics:**
 ```bash
-python ~/.claude/skills/live-evo/scripts/stats.py
+python <scripts-dir>/stats.py
 ```
