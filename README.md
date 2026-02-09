@@ -2,7 +2,7 @@
 
 A Claude Code skill that gives your AI agent **persistent, self-improving memory**. Live-Evo learns from past mistakes through experience accumulation and adaptive evaluation — so the same mistake is never repeated twice.
 
-Inspired by the research on [online self-evolving memory for LLM-based agents](https://arxiv.org/abs/2402.11890).
+Inspired by the research on [online self-evolving memory for LLM-based agents](https://arxiv.org/abs/2602.02369).
 
 ## How It Works
 
