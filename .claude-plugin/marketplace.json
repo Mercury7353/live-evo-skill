@@ -1,0 +1,21 @@
+{
+  "name": "live-evo-marketplace",
+  "owner": {
+    "name": "mercury"
+  },
+  "metadata": {
+    "description": "Live-Evo: Self-evolving memory system for Claude Code that learns from past mistakes through experience accumulation and adaptive evaluation.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "live-evo",
+      "source": "./plugins/live-evo",
+      "description": "Self-evolving memory system that learns from verifiable tasks. Stores experiences from failures, retrieves relevant lessons for new tasks, and adaptively updates experience quality via weight-based scoring.",
+      "version": "1.0.0",
+      "category": "productivity",
+      "tags": ["memory", "learning", "self-evolving", "experience", "agent-skills"],
+      "license": "MIT"
+    }
+  ]
+}

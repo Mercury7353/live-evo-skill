@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+*.pyo
+weight_history.jsonl
+.DS_Store

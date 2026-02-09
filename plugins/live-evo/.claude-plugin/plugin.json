@@ -1,0 +1,10 @@
+{
+  "name": "live-evo",
+  "description": "Self-evolving memory system that learns from verifiable tasks through experience accumulation and adaptive evaluation. Stores lessons from failures, retrieves relevant past experiences, and updates experience quality via contrastive weight scoring.",
+  "version": "1.0.0",
+  "author": {
+    "name": "mercury"
+  },
+  "license": "MIT",
+  "keywords": ["memory", "learning", "self-evolving", "experience", "contrastive-evaluation"]
+}
